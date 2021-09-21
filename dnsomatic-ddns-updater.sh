@@ -1,6 +1,8 @@
 #!/bin/bash
 ## change to "bin/sh" when necessary
 
+## credit for the base script logic goes to https://github.com/K0p1-Git/cloudflare-ddns-updater
+
 username=""                             # The email used to login 'https://www.dnsomatic.com/'
 password=""                             # Your DnsOmatic login password
 record_name=""                          # Which DNS record you want to be synced
@@ -19,8 +21,13 @@ fi
 ## Get existing IP
 ###########################################
 old_ip=$(dig $record_name +short)
+now=$(date)
+day=$($now + %d)
+# Check if today is the 14th or 28th
+if [[ $day == 14 || $day == 28 ]]; then
+  echo "We update DnsOmatic today to let them know we're still here."
 # Compare if they're the same
-if [[ $ip == $old_ip ]]; then
+elif [[ $ip == $old_ip ]]; then
   echo "DDNS Updater: IP ($ip) for ${record_name} has not changed."
   exit 0
 fi
