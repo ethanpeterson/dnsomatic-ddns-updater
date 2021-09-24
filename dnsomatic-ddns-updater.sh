@@ -3,8 +3,9 @@
 
 ## credit for the base script logic goes to https://github.com/K0p1-Git/cloudflare-ddns-updater
 
+## variables
 username=""                             # The email used to login 'https://www.dnsomatic.com/'
-password=""                             # Your DnsOmatic login password
+password=""                             # Your DNS-O-Matic login password
 record_name=""                          # Which DNS record you want to be synced
 
 ###########################################
@@ -21,11 +22,10 @@ fi
 ## Get existing IP
 ###########################################
 old_ip=$(dig $record_name +short)
-now=$(date)
-day=$($now + %d)
+day=$(date +%d)
 # Check if today is the 14th or 28th
 if [[ $day == 14 || $day == 28 ]]; then
-  echo "We update DnsOmatic today to let them know we're still here."
+  echo "We update DNS-O-Matic today to let them know we're still here."
 # Compare if they're the same
 elif [[ $ip == $old_ip ]]; then
   echo "DDNS Updater: IP ($ip) for ${record_name} has not changed."
@@ -33,9 +33,13 @@ elif [[ $ip == $old_ip ]]; then
 fi
 
 ###########################################
-## Change the IP@DnsOMatic using the API
+## Change the IP@DNS-O-Matic using the API
 ###########################################
-update=$(curl -s -u $username:$password "https://updates.dnsomatic.com/nic/update?hostname=$record_name&wildcard=NOCHG&myip=$ip")
+if [ "${ip}" == "" ]; then 
+  update=$(curl -s --user-agent "Custom DDNS Updater - 0.1" -u $username:$password "https://all.dnsomatic.com/nic/update?myip=$ip")
+else
+  update=$(curl -s --user-agent "Custom DDNS Updater - 0.1" -u $username:$password "https://updates.dnsomatic.com/nic/update?hostname=$record_name&wildcard=NOCHG&myip=$ip")
+fi
 
 ###########################################
 ## Report the status
