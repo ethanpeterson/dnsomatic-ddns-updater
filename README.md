@@ -6,7 +6,7 @@ IP address changes or it's the 14th or 28th of the month.
 ## Requirements
 The following is needed to sync your dynamic IP address with DNS-O-Matic:  
 * A DNS-O-Matic account <https://www.dnsomatic.com/>
-* A dynamic DNS service account setup with DNS-O-Matic. You can find a list of DDNS service providers at <https://dynamic.domains/dynamic-dns/providers-list/default.aspx>
+* A dynamic DNS service account setup with DNS-O-Matic. You can find a list of supported DDNS service providers at <https://dnsomatic.com/docs/supportedservices>
 * A way to run this script, preferrably automatically/scheduled
 
 ## Getting Started
