@@ -25,7 +25,7 @@ Then add the script per the below table...
 `# |  |  |  +------- month (1 - 12)`  
 `# |  |  |  |  +---- day of week (0 - 6) (Sunday=0 or 7)`  
 `# |  |  |  |  |`  
-`  00 01 *  *  * /bin/bash /opt/myscripts/dnsomatic-ddns-updater.sh `  
+`  0  1  *  *  * /bin/bash /opt/myscripts/dnsomatic-ddns-updater.sh `  
 
 Enjoy.
 
