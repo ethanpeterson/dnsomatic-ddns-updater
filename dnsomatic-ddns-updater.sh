@@ -44,7 +44,7 @@ fi
 ###########################################
 if [ "${old_ip}" == "" ]; then 
   echo "Requesting to update all.dnsomatic.com"
-  update=$(curl -s --user-agent "Custom DDNS Updater - 0.1" -u $username:$password "https://all.dnsomatic.com/nic/update?myip=$ip")
+  update=$(curl -s --user-agent "Custom DDNS Updater - 0.1" -u $username:$password "https://updates.dnsomatic.com/nic/update?myip=$ip")
 else
   echo "Requesting to update a specific domain, so we're running update.dnsomatic.com"
   update=$(curl -s --user-agent "Custom DDNS Updater - 0.1" -u $username:$password "https://updates.dnsomatic.com/nic/update?hostname=$record_name&wildcard=NOCHG&myip=$ip")
